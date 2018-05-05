@@ -1,4 +1,11 @@
-FROM ubuntu:17.04
+#
+# GitLab CI react-native-android v0.1
+#
+# https://hub.docker.com/r/webcuisine/gitlab-ci-react-native-android/
+# https://github.com/cuisines/gitlab-ci-react-native-android
+#
+
+FROM ubuntu:17.10
 
 RUN echo "Android SDK 26.0.2"
 ENV VERSION_SDK_TOOLS "3859397"
@@ -20,9 +27,6 @@ RUN apt-get -qq update && \
       lib32ncurses5 \
       lib32z1 \
       unzip \
-      gcc \
-      g++ \
-      gettext \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN rm -f /etc/ssl/certs/java/cacerts; \
@@ -71,4 +75,3 @@ RUN echo "Installing Gradle" \
 	&& rm gradle.zip \
 	&& mv "gradle-${GRADLE_VERSION}" "${GRADLE_HOME}/" \
 	&& ln --symbolic "${GRADLE_HOME}/bin/gradle" /usr/bin/gradle
-
